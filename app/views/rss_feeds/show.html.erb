@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Url</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @rss_feed.name.capitalize %></td>
+      <td><%= @rss_feed.url %></td>
+      <td>
+        <%= link_to "<i class='fa fa-pencil' aria-hidden='true'></i>".html_safe, edit_rss_feed_path(@rss_feed) %>
+      </td>  
+      <td>
+        <%= link_to "<i class='fa fa-times' aria-hidden='true'></i>".html_safe, rss_feed_path(@rss_feed), method: :delete, data: {confirm: "Are you sure?"} %>
+      </td>
+    </tr>
+  </tbody>
+</table>

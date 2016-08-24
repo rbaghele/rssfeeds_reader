@@ -1,0 +1,22 @@
+<div id="feed-container">
+  <%= render @feed_entries %>
+</div>
+
+<%= will_paginate @feed_entries %>
+
+<script type="text/javascript">
+  jQuery(function() {
+    if ($('.pagination').length) {
+      $(window).scroll(function() {
+        var url;
+        url = $('.pagination .next_page').attr('href');
+        if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+          $('.pagination').text("Fetching more examples...");
+          return $.getScript(url);
+        }
+      });
+      return $(window).scroll();
+    }
+  });
+
+</script>

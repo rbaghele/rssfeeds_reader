@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'rss_feeds#index'
-  
+  resources :rss_feeds do
+    collection do
+      get 'feed_entries'
+    end
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

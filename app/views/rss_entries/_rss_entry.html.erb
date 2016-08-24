@@ -1,0 +1,8 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= link_to rss_entry.title, rss_entry.url, target: '_blank' %> 
+    <% if rss_entry.published %>
+      - <i> published <%= time_ago_in_words(rss_entry.published) %> ago.</i>
+    <% end %>
+  </div>
+</div>

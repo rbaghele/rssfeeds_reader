@@ -1,0 +1,6 @@
+$('#feed-container').append('<%= j render(@feed_entries) %>');
+<% if @feed_entries.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate(@feed_entries) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>
