@@ -11,7 +11,13 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.validate.min
+//= require feed_validation
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+	$(".alert" ).fadeOut(3000);
+});

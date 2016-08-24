@@ -11,9 +11,10 @@ class RssFeedsController < ApplicationController
 
   def create
     @rss_feed = RssFeed.new(rss_feed_params)
-      
+    
     if @rss_feed.save
-      redirect_to rss_feeds_url, notice: 'Rss feed created successfully.'
+      flash[:success] = 'Rss feed created successfully.'
+      redirect_to rss_feeds_url
     else
       render :new
     end
@@ -27,6 +28,7 @@ class RssFeedsController < ApplicationController
 
   def update
     if @rss_feed.update_attributes(rss_feed_params)
+      flash[:success] = 'Rss feed updated successfully.'
       redirect_to rss_feed_url(@rss_feed)
     else
       render 'edit'
@@ -40,7 +42,7 @@ class RssFeedsController < ApplicationController
   end
 
   def feed_entries
-    @feed_entries = RssEntry.paginate(:page => params[:page], :per_page => 10)
+    @feed_entries = RssEntry.order('published desc').paginate(:page => params[:page], :per_page => 10)
   end
 
   private
