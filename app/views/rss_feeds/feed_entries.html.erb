@@ -1,11 +1,21 @@
 <div id="feed-container">
-  <%= render @feed_entries %>
+  <div class="row">
+    <div class="col-md-offset-8 col-md-4">
+      <input placeholder="Search" class="search form-control">
+      <br><br>
+    </div>
+  </div>
+  <div class="row">
+    <div class='list col-md-12'>
+      <%= render @feed_entries %>
+    </div>
+  </div>
 </div>
 
 <%= will_paginate @feed_entries %>
 
 <script type="text/javascript">
-  jQuery(function() {
+  $(function() {
     if ($('.pagination').length) {
       $(window).scroll(function() {
         var url;
@@ -19,4 +29,9 @@
     }
   });
 
+  var options = {
+    valueNames: [ 'name']
+  };
+
+  var feedList = new List('feed-container', options);
 </script>
