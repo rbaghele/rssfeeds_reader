@@ -3,10 +3,9 @@ class RssFeed < ActiveRecord::Base
 
   has_many :rss_entries, dependent: :destroy
 
-  before_create :load_rss_feeds!
+  after_save :load_rss_feeds!
 
   def load_rss_feeds!
-    feed_loder = RssFeedsLoader.new(self)
-    feed_loder.process!
+  	Resque.enqueue(FetchRecentFeeds, self.id) if self.url_changed?
   end
 end

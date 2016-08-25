@@ -13,6 +13,7 @@ class RssFeedsLoader
       parser = FeedResponseParser.new(rss_feeds)
       parser.fetch_entries!
       
+      @rss_feed.rss_entries = []
       parser.entries.each do |data|
         @rss_feed.rss_entries << build_rss_entry!(data)
       end
